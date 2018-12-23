@@ -11,8 +11,9 @@ export default class BarnsleyFern {
 
   private _dots: Dot[] = [];
 
-  private _x = 0;
-  private _y = 0;
+  private _x: number;
+  private _y: number;
+  private _color: string;
 
   private _resolution: number;
 
@@ -22,6 +23,10 @@ export default class BarnsleyFern {
     this._canvas.width = window.innerWidth;
     this._canvas.height = window.innerHeight;
     this._canvas.focus();
+
+    this._x = 0;
+    this._y = 0;
+    this._color = null;
 
     if (this._canvas.width > 1024) {
       this._resolution = 350;
@@ -63,7 +68,7 @@ export default class BarnsleyFern {
   }
 
   addDot(x: number, y: number) {
-    let dot = new Dot(this._context, x, y, 0.05, 'green');
+    let dot = new Dot(this._context, x, y, 0.05, this._color);
     this._dots.push(dot);
     
     dot.draw();
@@ -74,14 +79,17 @@ export default class BarnsleyFern {
 
     let nextX: number;
     let nextY: number;
-    if (randNum < 0.01) {
+
+    if (randNum < 0.03) {
 
       nextX = 0;
       nextY = 0.16 * this._y;
+
     } else if (randNum < 0.86) {
 
       nextX = 0.85 * this._x + 0.04 * this._y;
       nextY = -0.04 * this._x + 0.85 * this._y + 1.6;
+
     } else if (randNum < 0.93) {
 
       nextX = 0.2 * this._x - 0.26 * this._y;
@@ -91,6 +99,7 @@ export default class BarnsleyFern {
 
       nextX = -0.15 * this._x + 0.28 * this._y;
       nextY = 0.26 * this._x + 0.24 * this._y + 0.44;
+      
     }
 
     this._x = nextX;

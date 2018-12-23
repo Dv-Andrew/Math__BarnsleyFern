@@ -1,3 +1,5 @@
+import { map } from '../libs/p5';
+
 export class Dot {
 
   private _position = {
@@ -19,7 +21,8 @@ export class Dot {
     this._position.y = positionY;
 
     this._radius = radius;
-    this._color = color || `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 1)`;
+    this._color = color || `hsl(${map(this._position.y, _context.canvas.height, 0, 0, 360)}, 100%, 50%)`;
+
   }
 
   draw() {
