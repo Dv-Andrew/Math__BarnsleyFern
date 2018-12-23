@@ -63,7 +63,7 @@ export default class BarnsleyFern {
   }
 
   addDot(x: number, y: number) {
-    let dot = new Dot(this._context, x, y, 0.1);
+    let dot = new Dot(this._context, x, y, 0.05, 'green');
     this._dots.push(dot);
     
     dot.draw();
